@@ -25,7 +25,16 @@ export default class ping implements Command {
 
 
 
-        message.reply("Yo")
+        let test = (string: string = "test", callback: any) => {
+
+            callback(string)
+
+        }
+
+
+        test("Minecraft", (err: any) => {
+            console.log(err)
+        })
 
 
     }

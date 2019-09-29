@@ -6,11 +6,7 @@ import { Music } from "../Classes/Music"
 
 import * as Axios from "axios";
 
-import { URLSearchParams } from "url";
-
-import lavaqueue from "lavaqueue";
-import { Player } from "lavalink";
-
+import {URLSearchParams} from "url"
 
 
 
@@ -136,20 +132,10 @@ async function play(client: Music, msg: Discord.Message, player: any) {
 
             if (data.reason === "REPLACED") return;
 
-            queue.shift();
-
             if (client.queue[msg.guild!.id].loop === true) {
 
-                if (!queue[0]) {
-                    player.disconnect()
-                    client.manager.leave(msg.member!.guild.id)
-                    return msg.channel.send("No more songs in the queue disconnecting....");
-                }
+                queue.push(queue.shift());
 
-
-                queue.push(queue.shift);
-
-                console.log(queue)
 
                 return player.play(queue[0])
 
